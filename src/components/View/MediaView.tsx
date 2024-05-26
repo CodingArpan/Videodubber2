@@ -7,8 +7,6 @@ const MediaView = () => {
   const videoRef = useRef(null);
   const audioRef = useRef(null);
 
-  const [VideoState, setVideoState] = useState(false);
-  const [AudioState, setAudioState] = useState(false);
 
   const { videoFile, setVideoFile, audioFile, setAudioFile } =
     useContext(FileContext);
@@ -23,6 +21,7 @@ const MediaView = () => {
     if (audioFile && audioRef.current) {
       audioRef.current.src = audioFile;
     }
+    console.log("update audio")
   }, [audioFile]);
 
   return (
@@ -40,13 +39,13 @@ const MediaView = () => {
           <Controll videoRef={videoRef} audioRef={audioRef} />
         </div>
       )}
-
       {audioFile && (
         <audio ref={audioRef} controls>
           <source src={audioFile} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
       )}
+
     </>
   );
 };
